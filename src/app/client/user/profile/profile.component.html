@@ -1,0 +1,151 @@
+<div class="wrapper">
+    <div class="main p-3">
+        <nav class="navbar navbar-expand-lg bg-white rounded-4 sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Profile</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <form class="d-flex me-5" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <div class="bell">
+                                <img src="../assets/images/bellred.jpg" alt="" width="40px" class="me-4">
+                                <div class="conta">
+                                    <img src="../assets/images/chat1.png" alt="Avatar" width="40px">
+                                    <p><span style="color: blue; font-size: 15px;">Emmirates</span> added you in a
+                                        project ui/ux design</p>
+                                    <p><span
+                                            style="color: green; font-size: 15px; margin-left: 210px; position: relative; bottom: 20px;">2hrs
+                                            ago</span></p>
+
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="nav-item top">
+                            <img src="../assets/images/per6.avif" alt="" width="40px" height="40px"
+                                class="rounded-circle me-2">
+                            <div class="end">
+                              <span *ngIf="loggedInUsername">{{ loggedInUsername }}</span><br>
+                              <span *ngIf="userType" class="type">{{ userType }}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav><br>
+       <!-- Display user card for the logged-in user -->
+       <div class="container mt-3 ms-md-5">
+        <div class="card" style="max-width: 900px; height: 370px;overflow-y: scroll;">
+          <div class="card-body">
+            <div *ngFor="let card of users">
+              <!-- Check if the current user's name matches the logged-in username -->
+              <div *ngIf="card.name === loggedInUsername">
+                <div class="row">
+                  <!-- Profile image and basic information -->
+                  <div class="col-md-5">
+                    <div class="card">
+                      <div class="card-body text-center">
+                        <!-- Profile image -->
+                        <img src="../../../assets/images/chat1.png" class="profile-image" width="120px" alt="Profile Image">
+                        <!-- User name and role -->
+                        <h4>{{ card.name }}</h4>
+                        <h5>{{ card.role }}</h5>
+                      </div>
+                    </div>
+                    <!-- Skill progress section -->
+                    <div class="card mt-4 skills">
+                      <div class="card-body">
+                        <h4 class="text-center">Skills Progress</h4>
+                        <!-- Individual skill progress bars -->
+                        <div class="progress-wrapper  p-2 mt-3">
+                          <h6>Web development</h6>
+                          <div class="progress">
+                            <div class="progress-bar bg-info" style="width: 75%">75%</div>
+                          </div>
+                        </div>
+                        <div class="progress-wrapper m-2">
+                          <h6>Backend</h6>
+                          <div class="progress">
+                            <div class="progress-bar bg-success" style="width: 88%">88%</div>
+                          </div>
+                        </div>
+                        <div class="progress-wrapper p-2">
+                          <h6>Javascript</h6>
+                          <div class="progress">
+                            <div class="progress-bar bg-danger" style="width: 68%">68%</div>
+                          </div>
+                        </div>
+                        <div class="progress-wrapper  p-2">
+                          <h6>PHP</h6>
+                          <div class="progress">
+                            <div class="progress-bar bg-warning" style="width: 98%">98%</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Detailed information -->
+                  <div class="col-md-7">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title text-center" style="text-decoration: underline;">Profile Details</h4><br>
+                        <!-- Profile details -->
+                        <div class="profile-details">
+                          <p><strong>User-Id:</strong> {{ card.userid }}</p>
+                          <p><strong>Name:</strong> {{ card.name }}</p>
+                          <p><strong>Age:</strong> {{ card.age }}</p>
+                          <p><strong>Gender:</strong> {{ card.gender }}</p>
+                          <p><strong>Role:</strong> {{ card.role }}</p>
+                          <p><strong>Experience:</strong> {{ card.experience }}</p>
+                          <p><strong>Salary:</strong> {{ card.salary }}</p>
+                          <p><strong>Date of Joining:</strong> {{ card.joiningdate }}</p>
+                        </div>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">View Details</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Details</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="profile-details">
+                               
+                                <p><strong>Name:</strong> {{ card.name }}</p>
+                                <p><strong>Age:</strong> {{ card.age }}</p>
+                                <p><strong>Gender:</strong> {{ card.gender }}</p>
+                                <p><strong>Role:</strong> {{ card.role }}</p>
+                                <p><strong>Experience:</strong> {{ card.experience }}</p>
+                                <p><strong>Salary:</strong> {{ card.salary }}</p>
+                                <p><strong>Date of Joining:</strong> {{ card.joiningdate }}</p>
+                              </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</div>
+</div>
